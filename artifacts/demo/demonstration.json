@@ -1,0 +1,216 @@
+{
+  "project_id": "f3549331-97c0-47bc-bf66-70f31c465b4e",
+  "runs": {
+    "baseline": {
+      "id": "2ae65409-d7c7-4873-9d8b-3470b659c657",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 30,
+      "count": 30,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "3e9c0cc3bb664cae9bdc9258909ba200",
+        "genai_evaluation_run_id": "3e9c0cc3bb664cae9bdc9258909ba200",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "2"
+      },
+      "cases_per_second": 6.187269914109427
+    },
+    "candidate": {
+      "id": "55b65dbd-7151-4126-94e9-812743e01012",
+      "status": "COMPLETED",
+      "gate": "FAIL",
+      "passed": 12,
+      "count": 30,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "2b3fa5e16ac74ac3a8cb8011cdbc35d8",
+        "genai_evaluation_run_id": "2b3fa5e16ac74ac3a8cb8011cdbc35d8",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "2"
+      },
+      "cases_per_second": 2.3566791922110415
+    },
+    "operations": {
+      "id": "a16769dd-c7eb-465a-ab81-ac2e6c5a0479",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 30,
+      "count": 30,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "e7f699ef6946423e9462233f76d2e16d",
+        "genai_evaluation_run_id": "e7f699ef6946423e9462233f76d2e16d",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "3"
+      },
+      "cases_per_second": 9.383004738104095
+    },
+    "approval-bypass": {
+      "id": "5b147db9-5755-49a6-a8e1-3a4e67d5ff0e",
+      "status": "COMPLETED_WITH_ERRORS",
+      "gate": "FAIL",
+      "passed": 19,
+      "count": 30,
+      "safety_failures": 11,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "91daef991c6d43a0950c37a6741becaf",
+        "genai_evaluation_run_id": "91daef991c6d43a0950c37a6741becaf",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "3"
+      },
+      "cases_per_second": 13.349023894679124
+    },
+    "adversarial": {
+      "id": "51791788-c47c-488d-b14f-1b900d25b567",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 30,
+      "count": 30,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "5f2ed277990145e6b71b1e783e968a19",
+        "genai_evaluation_run_id": "5f2ed277990145e6b71b1e783e968a19",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "4"
+      },
+      "cases_per_second": 13.887714059003063
+    },
+    "injection-vulnerable": {
+      "id": "ad8c9fef-3b9b-4bdd-997f-075b8be9c495",
+      "status": "COMPLETED_WITH_ERRORS",
+      "gate": "FAIL",
+      "passed": 0,
+      "count": 30,
+      "safety_failures": 30,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "95d809ed7e9548628559e072de6fd55d",
+        "genai_evaluation_run_id": "95d809ed7e9548628559e072de6fd55d",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "4"
+      },
+      "cases_per_second": 9.223932687426837
+    },
+    "rag": {
+      "id": "45306811-8895-49fd-a868-da6edd6cc0ee",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 30,
+      "count": 30,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "4d5326ebab2e4b4796fce2b2db43f5d3",
+        "genai_evaluation_run_id": "4d5326ebab2e4b4796fce2b2db43f5d3",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "5"
+      },
+      "cases_per_second": 13.187627961944555
+    },
+    "workflows": {
+      "id": "dee5d4ff-eac2-49c8-a0ad-4cf6569f61fb",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 30,
+      "count": 30,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "db9ff02c558846f38717ca7b66896527",
+        "genai_evaluation_run_id": "db9ff02c558846f38717ca7b66896527",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "6"
+      },
+      "cases_per_second": 13.826091307052007
+    },
+    "finsight": {
+      "id": "89038fcf-ec66-496e-9074-07626b237415",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 12,
+      "count": 12,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "8509c1c3d7414e689092e4a1dbf36183",
+        "genai_evaluation_run_id": "8509c1c3d7414e689092e4a1dbf36183",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "7"
+      },
+      "cases_per_second": 36.1880688510182
+    },
+    "finsight-faulty": {
+      "id": "c3d93563-6f9c-493b-b9e1-a77dfc87a208",
+      "status": "COMPLETED",
+      "gate": "FAIL",
+      "passed": 0,
+      "count": 12,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "58c87964d4924c5b98d0545338ff5931",
+        "genai_evaluation_run_id": "58c87964d4924c5b98d0545338ff5931",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "7"
+      },
+      "cases_per_second": 44.77621897995542
+    },
+    "ledgerguard": {
+      "id": "18e4b1aa-f003-4847-8bd3-1ff2b08af82d",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 12,
+      "count": 12,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "8ab2cbe03cd84cf48428673b3eee2550",
+        "genai_evaluation_run_id": "8ab2cbe03cd84cf48428673b3eee2550",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "8"
+      },
+      "cases_per_second": 8.870210184257996
+    },
+    "ledgerguard-faulty": {
+      "id": "00842cb8-fc55-425a-abbb-d0b63531e0d1",
+      "status": "COMPLETED",
+      "gate": "FAIL",
+      "passed": 8,
+      "count": 12,
+      "safety_failures": 4,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "57822b94fadd413388f0a6a51f9f7d31",
+        "genai_evaluation_run_id": "57822b94fadd413388f0a6a51f9f7d31",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "8"
+      },
+      "cases_per_second": 35.60095589870197
+    },
+    "ci-baseline": {
+      "id": "7fac7362-50e3-4dae-b73b-630fe745da02",
+      "status": "COMPLETED",
+      "gate": "PASS",
+      "passed": 12,
+      "count": 12,
+      "safety_failures": 0,
+      "tracking": {
+        "status": "RECORDED",
+        "run_id": "90cab6d126b3490aaaec39ea45371e44",
+        "genai_evaluation_run_id": "90cab6d126b3490aaaec39ea45371e44",
+        "tracking_uri": "http://mlflow:5000",
+        "experiment_id": "1"
+      },
+      "cases_per_second": 13.92023030352846
+    }
+  },
+  "elapsed_seconds": 178.6175716319999,
+  "mode": "offline",
+  "live_model_reasoning_evaluated": false
+}

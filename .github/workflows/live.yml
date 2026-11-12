@@ -1,0 +1,37 @@
+name: Explicit live model evaluation
+on:
+  workflow_dispatch:
+    inputs:
+      enabled: {description: "Authorize paid model requests with configured budgets", type: boolean, default: false}
+      model: {description: "Provider model identifier", required: true, type: string}
+      input_price: {description: "USD per million input tokens", required: true, type: string}
+      output_price: {description: "USD per million output tokens", required: true, type: string}
+  schedule:
+    - cron: "0 6 * * 1"
+permissions: {contents: read}
+jobs:
+  live:
+    if: (github.event_name == 'workflow_dispatch' && inputs.enabled) || (github.event_name == 'schedule' && vars.ENABLE_SCHEDULED_LIVE == 'true')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      AB_LIVE_ENABLED: "true"
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      AB_PROVIDER_MODEL: ${{ inputs.model || vars.AB_PROVIDER_MODEL }}
+      AB_PROVIDER_INPUT_PER_MILLION: ${{ inputs.input_price || vars.AB_PROVIDER_INPUT_PER_MILLION }}
+      AB_PROVIDER_OUTPUT_PER_MILLION: ${{ inputs.output_price || vars.AB_PROVIDER_OUTPUT_PER_MILLION }}
+      AB_DATABASE_URL: sqlite+aiosqlite:///./.runtime/live.db
+      AB_DEMO_PASSWORD: ephemeral-live-evaluation-password
+      AB_MCP_TRANSPORT: stdio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: {version: "0.13.7"}
+      - run: uv sync --frozen --python 3.12
+      - run: mkdir -p .runtime
+      - run: uv run python -m alembic upgrade head && uv run python -m agentbench seed
+      - run: uv run python -m agentbench register-live --version live-configured
+      - run: uv run python -m agentbench eval run --version live-configured --dataset ci-smoke --mode live --output artifacts/live.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: live-evaluation, path: artifacts/}

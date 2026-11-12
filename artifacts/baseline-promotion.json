@@ -1,0 +1,6 @@
+{
+  "previous_run_id": "7fac7362-50e3-4dae-b73b-630fe745da02",
+  "promoted_run_id": "90ee812c-c9da-452c-96c6-e94b792fcfa0",
+  "dataset_checksum": "fe885e967e9e68d0d50dabda104a5caca4f260f9ad79935ef790fee0810fa85c",
+  "reason": "Promote the verified offline CI run with source checksums and MLflow dual export"
+}

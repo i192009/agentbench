@@ -1,0 +1,13 @@
+{
+  "run_id": "16a118f1-29f1-4487-a970-196662218bb5",
+  "project_id": "66579f16-0ec1-4118-84b8-b0e792214edf",
+  "terminated_child_pid": 18,
+  "completed_before_termination": 4,
+  "completed_after_recovery": 24,
+  "preserved_attempt_ids": true,
+  "gate": "PASS",
+  "recovery_seconds": 44.80824851899979,
+  "probe_lease_seconds": 2,
+  "normal_lease_seconds": 1890,
+  "note": "Only the probe lease was shortened; normal crash recovery waits for the configured run-timeout lease to expire."
+}

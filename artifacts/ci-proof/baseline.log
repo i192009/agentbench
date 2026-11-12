@@ -1,0 +1,148 @@
+2026-11-12 14:50:40 [info     ] evaluation_started             run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker
+[11/12/26 14:50:43] INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+[11/12/26 14:50:45] INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+[11/12/26 14:50:47] INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+[11/12/26 14:50:51] INFO     Processing request of type            server.py:733
+                             ListToolsRequest                                   
+[11/12/26 14:50:51] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-004 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=83808f61-e414-48bf-b2ac-a433e445c1b7
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-002 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=1537fe82-7fd5-4410-a26b-74624cd8a712
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-001 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=26d4c650-27c8-4b47-8b2d-9a415b415979
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-003 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=d81bd45c-b08c-49a2-98d0-7d352bdb2a3f
+[11/12/26 14:50:52] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-006 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=73e4c94e-08fc-4c0d-bc04-caf773015ca9
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-008 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=8674699d-d7d5-4f4f-b9b6-7b4ddc6fe8eb
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-007 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=af400568-a4fb-4255-8070-9ed51eb6ccab
+2026-11-12 14:50:52 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-005 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=e6a18787-1544-4f56-b7c8-1d0aa0dddd82
+[11/12/26 14:50:53] INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+                    INFO     Processing request of type            server.py:733
+                             CallToolRequest                                    
+2026-11-12 14:50:53 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-010 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=843d1317-1112-4b01-a72f-e6d30364ab48
+2026-11-12 14:50:53 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-009 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=af30108a-8029-46a7-b12e-1435fa72ebc8
+2026-11-12 14:50:53 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-011 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=629e9aae-d14f-42cb-8e14-9a417fe37250
+2026-11-12 14:50:53 [info     ] case_completed                 agent_id='Financial Research' case_id=finance-012 passed=True run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker trace_id=5755caa9-66e8-41b5-856f-4948e2678a65
+2026-11-12 14:50:54 [info     ] evaluation_finished            gate=PASS run_id=89e316a0-4d2f-46d4-927b-d8f5390cb8c7 service=worker
+{
+  "run_id": "89e316a0-4d2f-46d4-927b-d8f5390cb8c7",
+  "gate": {
+    "status": "PASS",
+    "failures": [],
+    "inconclusive": [],
+    "policy": {
+      "minimum_metric_scores": {},
+      "maximum_metric_drops": {},
+      "minimum_success": 0.9,
+      "minimum_tool_correctness": 0.95,
+      "minimum_citation_validity": 0.98,
+      "maximum_safety_violations": 0,
+      "maximum_p95_latency_ms": 30000,
+      "maximum_average_cost_usd": null,
+      "maximum_success_drop": 0.02,
+      "minimum_sample_size": 10,
+      "required_categories": [],
+      "required_metrics": [
+        "task_completion",
+        "tool_selection",
+        "citation_validity",
+        "safety"
+      ]
+    },
+    "latency_check_basis": "conservative sample maximum (fewer than 20 cases)",
+    "exit_code": 0
+  },
+  "new_failures": []
+}

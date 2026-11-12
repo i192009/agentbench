@@ -1,0 +1,260 @@
+{
+  "decision_scope": "external CI paired comparison of exported authoritative results",
+  "gate": {
+    "status": "PASS",
+    "failures": [],
+    "inconclusive": [],
+    "policy": {
+      "minimum_metric_scores": {},
+      "maximum_metric_drops": {},
+      "minimum_success": 0.9,
+      "minimum_tool_correctness": 0.95,
+      "minimum_citation_validity": 0.98,
+      "maximum_safety_violations": 0,
+      "maximum_p95_latency_ms": 30000,
+      "maximum_average_cost_usd": null,
+      "maximum_success_drop": 0.02,
+      "minimum_sample_size": 10,
+      "required_categories": [],
+      "required_metrics": [
+        "task_completion",
+        "tool_selection",
+        "citation_validity",
+        "safety"
+      ]
+    },
+    "latency_check_basis": "conservative sample maximum (fewer than 20 cases)",
+    "exit_code": 0
+  },
+  "comparison": {
+    "status": "CONCLUSIVE",
+    "paired_count": 12,
+    "independent_cases": 12,
+    "effect_size": 0.0,
+    "delta_ci95": [
+      0.0,
+      0.0
+    ],
+    "statistical_regression": false,
+    "resamples": 2000,
+    "seed": 42,
+    "new_failures": [],
+    "recovered": [],
+    "persistent_failures": [],
+    "trajectory_changes": [],
+    "metric_deltas": {
+      "tool_selection": 0.0,
+      "trajectory_integrity": 0.0,
+      "tool_arguments": 0.0,
+      "tool_order": 0.0,
+      "task_completion": 0.0,
+      "numeric_accuracy": 0.0,
+      "workflow": 0.0,
+      "safety": 0.0,
+      "retrieval_hit_rate": 0.0,
+      "precision_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "mrr": 0.0,
+      "citation_validity": 0.0,
+      "evidence_support": 0.0,
+      "budget": 0.0
+    },
+    "metric_ci95": {
+      "evidence_support": [
+        0.0,
+        0.0
+      ],
+      "recall_at_5": [
+        0.0,
+        0.0
+      ],
+      "retrieval_hit_rate": [
+        0.0,
+        0.0
+      ],
+      "precision_at_5": [
+        0.0,
+        0.0
+      ],
+      "trajectory_integrity": [
+        0.0,
+        0.0
+      ],
+      "citation_validity": [
+        0.0,
+        0.0
+      ],
+      "tool_selection": [
+        0.0,
+        0.0
+      ],
+      "safety": [
+        0.0,
+        0.0
+      ],
+      "budget": [
+        0.0,
+        0.0
+      ],
+      "task_completion": [
+        0.0,
+        0.0
+      ],
+      "numeric_accuracy": [
+        0.0,
+        0.0
+      ],
+      "mrr": [
+        0.0,
+        0.0
+      ],
+      "tool_order": [
+        0.0,
+        0.0
+      ],
+      "tool_arguments": [
+        0.0,
+        0.0
+      ],
+      "workflow": [
+        0.0,
+        0.0
+      ]
+    },
+    "latency_delta_ms": 170.53393500024563,
+    "baseline": {
+      "count": 12,
+      "independent_cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "success_rate": 1.0,
+      "success_rate_ci95": [
+        0.7574992425007574,
+        1
+      ],
+      "metrics": {
+        "tool_selection": 1.0,
+        "trajectory_integrity": 1.0,
+        "tool_arguments": 1.0,
+        "tool_order": 1.0,
+        "task_completion": 1.0,
+        "numeric_accuracy": 1.0,
+        "workflow": 1.0,
+        "safety": 1.0,
+        "retrieval_hit_rate": 1.0,
+        "precision_at_5": 1.0,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "citation_validity": 1.0,
+        "evidence_support": 1.0,
+        "budget": 1.0,
+        "ragas_id_based_context_precision": 1.0,
+        "ragas_id_based_context_recall": 1.0,
+        "deepeval_tool_correctness": 1.0
+      },
+      "metric_counts": {
+        "tool_selection": 12,
+        "trajectory_integrity": 12,
+        "tool_arguments": 12,
+        "tool_order": 12,
+        "task_completion": 12,
+        "numeric_accuracy": 12,
+        "workflow": 12,
+        "safety": 12,
+        "retrieval_hit_rate": 12,
+        "precision_at_5": 12,
+        "recall_at_5": 12,
+        "mrr": 12,
+        "citation_validity": 12,
+        "evidence_support": 12,
+        "budget": 12,
+        "ragas_id_based_context_precision": 12,
+        "ragas_id_based_context_recall": 12,
+        "deepeval_tool_correctness": 12
+      },
+      "safety_violations": 0,
+      "evaluator_errors": 0,
+      "inconclusive_scores": 0,
+      "average_latency_ms": 150.57142666667764,
+      "maximum_latency_ms": 162.64060199955566,
+      "p50_latency_ms": 152.00355199976912,
+      "p95_latency_ms": null,
+      "p99_latency_ms": null,
+      "average_cost_usd": null,
+      "total_known_cost_usd": 0,
+      "cost_coverage": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "judge_input_tokens": 0,
+      "judge_output_tokens": 0,
+      "total_known_judge_cost_usd": 0,
+      "tool_calls": 48,
+      "retries": 0
+    },
+    "candidate": {
+      "count": 12,
+      "independent_cases": 12,
+      "passed": 12,
+      "failed": 0,
+      "success_rate": 1.0,
+      "success_rate_ci95": [
+        0.7574992425007574,
+        1
+      ],
+      "metrics": {
+        "tool_selection": 1.0,
+        "trajectory_integrity": 1.0,
+        "tool_arguments": 1.0,
+        "tool_order": 1.0,
+        "task_completion": 1.0,
+        "numeric_accuracy": 1.0,
+        "workflow": 1.0,
+        "safety": 1.0,
+        "retrieval_hit_rate": 1.0,
+        "precision_at_5": 1.0,
+        "recall_at_5": 1.0,
+        "mrr": 1.0,
+        "citation_validity": 1.0,
+        "evidence_support": 1.0,
+        "budget": 1.0
+      },
+      "metric_counts": {
+        "tool_selection": 12,
+        "trajectory_integrity": 12,
+        "tool_arguments": 12,
+        "tool_order": 12,
+        "task_completion": 12,
+        "numeric_accuracy": 12,
+        "workflow": 12,
+        "safety": 12,
+        "retrieval_hit_rate": 12,
+        "precision_at_5": 12,
+        "recall_at_5": 12,
+        "mrr": 12,
+        "citation_validity": 12,
+        "evidence_support": 12,
+        "budget": 12
+      },
+      "safety_violations": 0,
+      "evaluator_errors": 0,
+      "inconclusive_scores": 0,
+      "average_latency_ms": 321.1053616669233,
+      "maximum_latency_ms": 453.5236870005974,
+      "p50_latency_ms": 296.6290565000236,
+      "p95_latency_ms": null,
+      "p99_latency_ms": null,
+      "average_cost_usd": null,
+      "total_known_cost_usd": 0,
+      "cost_coverage": 0.0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "judge_input_tokens": 0,
+      "judge_output_tokens": 0,
+      "total_known_judge_cost_usd": 0,
+      "tool_calls": 48,
+      "retries": 0
+    }
+  },
+  "run_id": "89e316a0-4d2f-46d4-927b-d8f5390cb8c7",
+  "pinned_baseline_run_id": "90ee812c-c9da-452c-96c6-e94b792fcfa0"
+}

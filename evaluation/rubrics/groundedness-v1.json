@@ -1,0 +1,7 @@
+{
+  "version": "1",
+  "criterion": "Each material claim should be entailed by the supplied source, with appropriate abstention for missing or conflicting evidence.",
+  "threshold": 0.8,
+  "critical_invariants": "Authorization and approval boundaries are evaluated deterministically and cannot be overridden by this judge.",
+  "calibration_status": "Live human calibration is unverified. Supply independently reviewed labels before using judge scores for deployment policy."
+}

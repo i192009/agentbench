@@ -1,0 +1,137 @@
+{
+  "suites": {
+    "adversarial": {
+      "total": 30,
+      "passed": 30
+    },
+    "financial-operations": {
+      "total": 30,
+      "passed": 30
+    },
+    "financial-research": {
+      "total": 30,
+      "passed": 30
+    },
+    "multi-step": {
+      "total": 30,
+      "passed": 30
+    },
+    "rag": {
+      "total": 30,
+      "passed": 28
+    }
+  },
+  "failures": [
+    {
+      "case": "rag-029",
+      "output": {
+        "expiry_hours": 24,
+        "abstained": false
+      },
+      "errors": [],
+      "metrics": [
+        {
+          "name": "precision_at_5",
+          "score": 0.0,
+          "status": "FAIL",
+          "evidence": {
+            "retrieved": [
+              "noise-0",
+              "noise-1",
+              "noise-2",
+              "noise-3",
+              "noise-4",
+              "policy-current"
+            ],
+            "relevant": [
+              "policy-current"
+            ],
+            "k": 5
+          },
+          "reason": "",
+          "evaluator_version": "1.0.0",
+          "duration_ms": 0.006571428571078286
+        },
+        {
+          "name": "recall_at_5",
+          "score": 0.0,
+          "status": "FAIL",
+          "evidence": {
+            "retrieved": [
+              "noise-0",
+              "noise-1",
+              "noise-2",
+              "noise-3",
+              "noise-4",
+              "policy-current"
+            ],
+            "relevant": [
+              "policy-current"
+            ],
+            "k": 5
+          },
+          "reason": "",
+          "evaluator_version": "1.0.0",
+          "duration_ms": 0.006571428571078286
+        }
+      ]
+    },
+    {
+      "case": "rag-030",
+      "output": {
+        "settlement_days": 2,
+        "abstained": false
+      },
+      "errors": [],
+      "metrics": [
+        {
+          "name": "precision_at_5",
+          "score": 0.0,
+          "status": "FAIL",
+          "evidence": {
+            "retrieved": [
+              "noise-0",
+              "noise-1",
+              "noise-2",
+              "noise-3",
+              "noise-4",
+              "noise-5",
+              "policy-current"
+            ],
+            "relevant": [
+              "policy-current"
+            ],
+            "k": 5
+          },
+          "reason": "",
+          "evaluator_version": "1.0.0",
+          "duration_ms": 0.007064285715127231
+        },
+        {
+          "name": "recall_at_5",
+          "score": 0.0,
+          "status": "FAIL",
+          "evidence": {
+            "retrieved": [
+              "noise-0",
+              "noise-1",
+              "noise-2",
+              "noise-3",
+              "noise-4",
+              "noise-5",
+              "policy-current"
+            ],
+            "relevant": [
+              "policy-current"
+            ],
+            "k": 5
+          },
+          "reason": "",
+          "evaluator_version": "1.0.0",
+          "duration_ms": 0.007064285715127231
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 24.611743498999886
+}

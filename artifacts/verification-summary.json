@@ -1,0 +1,63 @@
+{
+  "verified_on": "2026-11-12",
+  "backend_pytest": {
+    "tests": 73,
+    "failures": 0,
+    "errors": 0
+  },
+  "frontend_vitest": {
+    "tests": 6,
+    "failures": 0
+  },
+  "playwright": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0
+  },
+  "ruff": "PASS",
+  "mypy": "PASS (38 modules)",
+  "frontend_build": "PASS",
+  "docker_compose": "All application health checks passed",
+  "demonstration_runs": 13,
+  "demonstration_case_executions": 300,
+  "expected_demonstration_gates": {
+    "baseline": "PASS",
+    "candidate": "FAIL",
+    "operations": "PASS",
+    "approval-bypass": "FAIL",
+    "adversarial": "PASS",
+    "injection-vulnerable": "FAIL",
+    "rag": "PASS",
+    "workflows": "PASS",
+    "finsight": "PASS",
+    "finsight-faulty": "FAIL",
+    "ledgerguard": "PASS",
+    "ledgerguard-faulty": "FAIL",
+    "ci-baseline": "PASS"
+  },
+  "ci_exit_proof": {
+    "baseline": {
+      "version": "v1",
+      "expected_exit_code": 0,
+      "actual_exit_code": 0
+    },
+    "controlled-regression": {
+      "version": "v2-faulty",
+      "expected_exit_code": 1,
+      "actual_exit_code": 1
+    }
+  },
+  "live_model_evaluated": false,
+  "unverified": [
+    "paid live model/judge calls",
+    "live original FinSight/LedgerGuard deployments",
+    "independent human judge calibration",
+    "hosted GitHub Actions execution"
+  ],
+  "details": [
+    "artifacts/stack-verification.json",
+    "artifacts/mlflow-native-trace-proof.json",
+    "artifacts/reliability.json",
+    "artifacts/benchmark.json"
+  ]
+}

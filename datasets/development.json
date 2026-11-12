@@ -1,0 +1,126 @@
+{
+  "name": "development",
+  "description": "",
+  "domain": "general",
+  "version": 1,
+  "split": "development",
+  "provenance": {},
+  "tags": [],
+  "cases": [
+    {
+      "id": "dev-growth",
+      "category": "financial-research",
+      "input": "Explain ACME development fixture revenue growth",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false,
+          "currency": "USD",
+          "period": 2025
+        },
+        "facts": {
+          "growth_percent": 60.0
+        },
+        "required_tools": [
+          "get_company_profile",
+          "get_financial_statements",
+          "search_financial_filings",
+          "calculate_financial_ratio"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "get_financial_statements": {
+            "company": "ACME",
+            "period": 2025
+          }
+        },
+        "order": [
+          [
+            "get_company_profile",
+            "get_financial_statements"
+          ],
+          [
+            "get_financial_statements",
+            "calculate_financial_ratio"
+          ]
+        ],
+        "document_ids": [
+          "filing-2025",
+          "filing-2024"
+        ],
+        "citation_ids": [
+          "filing-2025",
+          "filing-2024"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate",
+          "validate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "period": 2025,
+        "currency": "USD",
+        "metric": "growth_percent",
+        "statements": [
+          {
+            "period": 2025,
+            "revenue_minor": 16000,
+            "profit_minor": 2500,
+            "assets_minor": 20000,
+            "liabilities_minor": 10000,
+            "currency": "USD"
+          },
+          {
+            "period": 2024,
+            "revenue_minor": 10000,
+            "currency": "USD"
+          }
+        ],
+        "documents": [
+          {
+            "id": "filing-2025",
+            "content": "ACME annual filing 2025: growth_percent = 60.0; USD reporting.",
+            "facts": {
+              "growth_percent": 60.0,
+              "currency": "USD",
+              "period": 2025
+            }
+          },
+          {
+            "id": "filing-2024",
+            "content": "ACME annual filing 2024 revenue minor units 10000. Comparative growth_percent = 60.0.",
+            "facts": {
+              "growth_percent": 60.0
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "growth_percent"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    }
+  ]
+}

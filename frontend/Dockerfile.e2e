@@ -1,0 +1,8 @@
+FROM mcr.microsoft.com/playwright:v1.58.2-noble
+WORKDIR /app/frontend
+ENV PLAYWRIGHT_CHROMIUM_EXECUTABLE=/ms-playwright/chromium-1208/chrome-linux/chrome
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN node -e "const fs=require('fs');const p='/ms-playwright';console.log(fs.readdirSync(p))"
+CMD ["npm", "run", "test:e2e"]

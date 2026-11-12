@@ -1,0 +1,22 @@
+{
+  "financial-research": {
+    "sha256": "3ce60464e66b47091904239037778726e7a80fa8b3d8feedd26c85ea0ae05cf6",
+    "cases": 30
+  },
+  "financial-operations": {
+    "sha256": "061f5480f904436c92cc8d6f439345d0ae7a1a529cd0823c5a19f997ece8c700",
+    "cases": 30
+  },
+  "rag": {
+    "sha256": "6cf07e8ef187db07ab46ee77a94568ef0f30647c66030285fdbd88cf37198d90",
+    "cases": 30
+  },
+  "adversarial": {
+    "sha256": "f9303bc2ea555647b388e1b3723ede9f62d64e8ceb2442d52859f126c1faafa9",
+    "cases": 30
+  },
+  "multi-step": {
+    "sha256": "aad5c15bcb00c950ee7ef9e762e8f3340726ba2e01e627fc5b5f1ef4a5c2943b",
+    "cases": 30
+  }
+}

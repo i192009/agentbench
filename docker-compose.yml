@@ -1,0 +1,147 @@
+name: agentbench
+x-app: &app
+  image: agentbench-python:local
+  build:
+    context: .
+    dockerfile: backend/Dockerfile
+  env_file: .env
+  environment:
+    OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+    OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+    MLFLOW_TRACE_ENABLE_OTLP_DUAL_EXPORT: "true"
+    OTEL_SERVICE_NAME: agentbench
+  restart: unless-stopped
+  volumes:
+    - checkpoints:/app/.runtime
+  networks: [platform]
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: agentbench
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: agentbench
+    ports: ["127.0.0.1:5440:5432"]
+    volumes: ["postgres:/var/lib/postgresql/data", "./infrastructure/init.sql:/docker-entrypoint-initdb.d/01-mlflow.sql:ro"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agentbench -d agentbench"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    networks: [platform]
+    restart: unless-stopped
+  redis:
+    image: redis:7.4.7-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "256mb", "--maxmemory-policy", "noeviction"]
+    ports: ["127.0.0.1:6390:6379"]
+    volumes: ["redis:/data"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [platform]
+    restart: unless-stopped
+  migrate:
+    <<: *app
+    restart: "no"
+    command: ["sh", "-c", "python -m alembic upgrade head && python -m agentbench seed"]
+    depends_on:
+      postgres: {condition: service_healthy}
+  backend:
+    <<: *app
+    ports: ["127.0.0.1:8010:8000"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/ready')"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+  worker:
+    <<: *app
+    command: ["python", "-m", "celery", "-A", "agentbench.workers:celery", "worker", "--concurrency=2", "--loglevel=WARNING"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+      mcp-financial: {condition: service_healthy}
+      mcp-transactions: {condition: service_healthy}
+      mcp-risk: {condition: service_healthy}
+      mcp-approvals: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "python", "-m", "celery", "-A", "agentbench.workers:celery", "inspect", "ping", "--timeout=5"]
+      interval: 60s
+      timeout: 25s
+      retries: 5
+  scheduler:
+    <<: *app
+    command: ["python", "-m", "celery", "-A", "agentbench.workers:celery", "beat", "--schedule=/app/.runtime/celerybeat", "--loglevel=WARNING"]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+  mcp-financial: &mcp
+    <<: *app
+    env_file: []
+    environment:
+      AB_MCP_TOKEN: ${AB_MCP_TOKEN}
+    command: ["python", "-m", "agentbench.mcp.server", "financial", "--transport", "streamable-http"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/live')"]
+      interval: 10s
+      timeout: 3s
+      retries: 15
+  mcp-transactions:
+    <<: *mcp
+    command: ["python", "-m", "agentbench.mcp.server", "transactions", "--transport", "streamable-http"]
+  mcp-risk:
+    <<: *mcp
+    command: ["python", "-m", "agentbench.mcp.server", "risk", "--transport", "streamable-http"]
+  mcp-approvals:
+    <<: *mcp
+    command: ["python", "-m", "agentbench.mcp.server", "approvals", "--transport", "streamable-http"]
+  mlflow:
+    <<: *app
+    command: ["sh", "-c", "python -m mlflow server --host 0.0.0.0 --port 5000 --workers 1 --backend-store-uri postgresql+psycopg://agentbench:$POSTGRES_PASSWORD@postgres:5432/mlflow --artifacts-destination /app/.runtime/mlartifacts --serve-artifacts --allowed-hosts mlflow:5000,localhost:5050,127.0.0.1:5050"]
+    ports: ["127.0.0.1:5050:5000"]
+    depends_on:
+      postgres: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+  frontend:
+    build: {context: frontend}
+    ports: ["127.0.0.1:5173:8080"]
+    depends_on:
+      backend: {condition: service_healthy}
+    networks: [platform]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080"]
+      interval: 15s
+      timeout: 3s
+      retries: 10
+  prometheus:
+    image: prom/prometheus:v3.13.5
+    volumes: ["./infrastructure/prometheus.yml:/etc/prometheus/prometheus.yml:ro", "prometheus:/prometheus"]
+    ports: ["127.0.0.1:9095:9090"]
+    networks: [platform]
+    restart: unless-stopped
+  otel-collector:
+    image: otel/opentelemetry-collector:0.165.0
+    command: ["--config=/etc/otel/config.yml"]
+    volumes: ["./infrastructure/otel.yml:/etc/otel/config.yml:ro"]
+    ports: ["127.0.0.1:4318:4318"]
+    networks: [platform]
+    restart: unless-stopped
+
+volumes:
+  postgres:
+  redis:
+  checkpoints:
+  prometheus:
+networks:
+  platform:

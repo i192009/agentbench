@@ -1,0 +1,58 @@
+{
+  "scope": "benchmark driver + real MCP protocol; bounded admission queue; excludes PostgreSQL persistence and MLflow tracking",
+  "concurrency": 4,
+  "loads": [
+    {
+      "submitted_cases": 10,
+      "passed": 10,
+      "elapsed_seconds": 4.579955463999795,
+      "cases_per_second": 2.183427345222859,
+      "queue_wait_p95_ms": 4082.060228000023,
+      "latency_p50_ms": 781.9169439999314,
+      "latency_p95_ms": 3454.544717450085,
+      "driver_rss_mb": 116.5546875,
+      "driver_cpu_seconds": 1.35,
+      "average_trace_bytes": 12622.7,
+      "failures": []
+    },
+    {
+      "submitted_cases": 50,
+      "passed": 50,
+      "elapsed_seconds": 2.301223482000296,
+      "cases_per_second": 21.72757248093889,
+      "queue_wait_p95_ms": 1962.9361899998912,
+      "latency_p50_ms": 177.54824849976103,
+      "latency_p95_ms": 228.73844800012648,
+      "driver_rss_mb": 116.671875,
+      "driver_cpu_seconds": 1.92,
+      "average_trace_bytes": 12653.52,
+      "failures": []
+    },
+    {
+      "submitted_cases": 100,
+      "passed": 100,
+      "elapsed_seconds": 5.205319483000039,
+      "cases_per_second": 19.21111669064468,
+      "queue_wait_p95_ms": 4749.136524000028,
+      "latency_p50_ms": 192.5135494998358,
+      "latency_p95_ms": 280.7558779499457,
+      "driver_rss_mb": 116.98046875,
+      "driver_cpu_seconds": 4.220000000000001,
+      "average_trace_bytes": 12677.94,
+      "failures": []
+    },
+    {
+      "submitted_cases": 500,
+      "passed": 500,
+      "elapsed_seconds": 39.07841584300013,
+      "cases_per_second": 12.794786820652604,
+      "queue_wait_p95_ms": 37322.746263999936,
+      "latency_p50_ms": 240.72464899995794,
+      "latency_p95_ms": 536.8291690500881,
+      "driver_rss_mb": 117.28125,
+      "driver_cpu_seconds": 21.79,
+      "average_trace_bytes": 12700.532,
+      "failures": []
+    }
+  ]
+}

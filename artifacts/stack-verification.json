@@ -1,0 +1,56 @@
+{
+  "checks": {
+    "backend": {
+      "http_status": 200,
+      "latency_ms": 69.33799400030694
+    },
+    "frontend": {
+      "http_status": 200,
+      "latency_ms": 4.042100000333448
+    },
+    "mlflow": {
+      "http_status": 200,
+      "latency_ms": 22.56529800069984
+    },
+    "prometheus": {
+      "persisted_case_metrics": true,
+      "scrape_target_up": true
+    },
+    "mcp": {
+      "transport": "streamable-http",
+      "discovered_tools": 21,
+      "profile": {
+        "company": "ACME",
+        "candidates": [
+          "ACME"
+        ],
+        "ambiguous": false
+      },
+      "invalid_arguments_rejected": true,
+      "unauthenticated_status": 401
+    },
+    "otel_propagation": {
+      "run_id": "c3ef1854-aa0a-4168-8962-574b29483c42",
+      "api_trace_id": "4e9ceef3b5cd736b413447e74a066d6d",
+      "worker_trace_id": "4e9ceef3b5cd736b413447e74a066d6d"
+    },
+    "source_snapshot": {
+      "tree_checksum": "6eb91f82b7f0c0a7390b2c318e6b064f8105a80eb3a785e28fb7fab7db6eedaf",
+      "source_files": 38
+    },
+    "durable_progress": {
+      "completion_event": true
+    },
+    "mlflow_correspondence": {
+      "run_id": "c5e91a92340e4bb5b7daafcc79bcb202",
+      "agentbench_run_id": "c3ef1854-aa0a-4168-8962-574b29483c42",
+      "success_rate": 1.0,
+      "traces_found": 2,
+      "genai_run_id": "c5e91a92340e4bb5b7daafcc79bcb202"
+    },
+    "postgres_migration": {
+      "revision": "0002"
+    }
+  },
+  "live_model_evaluated": false
+}

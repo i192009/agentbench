@@ -1,0 +1,7 @@
+{
+  "agentbench_run_id": "c3ef1854-aa0a-4168-8962-574b29483c42",
+  "mlflow_run_id": "c5e91a92340e4bb5b7daafcc79bcb202",
+  "native_traces_found_for_run": 5,
+  "per_case_trace_artifacts": 30,
+  "mode": "offline"
+}

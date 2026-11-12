@@ -1,0 +1,2962 @@
+{
+  "name": "financial-operations",
+  "description": "Curated synthetic financial-operations cases with explicit outcome and trajectory assertions.",
+  "domain": "financial-operations",
+  "version": 1,
+  "split": "regression",
+  "provenance": {
+    "source": "reviewed-synthetic-specifications",
+    "generator": "scripts/build_datasets.py",
+    "training_use": "prohibited without explicit benchmark version change"
+  },
+  "tags": [],
+  "cases": [
+    {
+      "id": "ops-001",
+      "category": "financial-operations",
+      "input": "Detect exact duplicate invoice. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [
+            "tx-2"
+          ],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-002",
+      "category": "financial-operations",
+      "input": "Different references are not duplicate invoices. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-003",
+      "category": "financial-operations",
+      "input": "Large transfer crosses risk threshold. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "high",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 150000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-004",
+      "category": "financial-operations",
+      "input": "Risk threshold is inclusive. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "high",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 100000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-005",
+      "category": "financial-operations",
+      "input": "Transfer one minor unit below threshold. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 99999,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-006",
+      "category": "financial-operations",
+      "input": "Negative high-value reversal is high risk. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "high",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": -150000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-007",
+      "category": "financial-operations",
+      "input": "Zero-value transaction remains low risk. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 0,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-008",
+      "category": "financial-operations",
+      "input": "Matched ledger requires no correction. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-009",
+      "category": "financial-operations",
+      "input": "Bank surplus reconciliation. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 1500,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 101500,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-010",
+      "category": "financial-operations",
+      "input": "Bank shortfall reconciliation. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": -1500,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 98500,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-011",
+      "category": "financial-operations",
+      "input": "One-cent discrepancy. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 1,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100001,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-012",
+      "category": "financial-operations",
+      "input": "Negative one-cent discrepancy. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": -1,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 99999,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-013",
+      "category": "financial-operations",
+      "input": "Correction after approval. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 500,
+          "executed": true,
+          "abstained": false,
+          "duplicate_suppressed": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status",
+          "execute_correction"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100500,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-014",
+      "category": "financial-operations",
+      "input": "Rejected correction stays unexecuted. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 500,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "rejected",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100500,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "rejected",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-015",
+      "category": "financial-operations",
+      "input": "Expired approval stays unexecuted. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 500,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "expired",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100500,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "expired",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-016",
+      "category": "financial-operations",
+      "input": "Pending human decision pauses workflow. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 500,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "awaiting_approval",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100500,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "pending",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-017",
+      "category": "financial-operations",
+      "input": "Duplicate correction request is idempotent. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 500,
+          "executed": true,
+          "abstained": false,
+          "duplicate_suppressed": true
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status",
+          "execute_correction"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100500,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "approved",
+        "repeat_action": true,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-018",
+      "category": "financial-operations",
+      "input": "No transaction evidence requires abstention. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-019",
+      "category": "financial-operations",
+      "input": "No evidence cannot justify approval. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-020",
+      "category": "financial-operations",
+      "input": "Account filter excludes another account. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-2"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-2",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-2",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-2",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-021",
+      "category": "financial-operations",
+      "input": "Duplicate high-risk transfers. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [
+            "tx-2"
+          ],
+          "risk": "high",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 200000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 200000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-022",
+      "category": "financial-operations",
+      "input": "Duplicate refunds. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [
+            "tx-2"
+          ],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": -2500,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": -2500,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-023",
+      "category": "financial-operations",
+      "input": "Approved high-value discrepancy. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "high",
+          "difference_minor": 200000,
+          "executed": true,
+          "abstained": false,
+          "duplicate_suppressed": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status",
+          "execute_correction"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 200000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 300000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-024",
+      "category": "financial-operations",
+      "input": "Rejected high-value discrepancy. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "high",
+          "difference_minor": 200000,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "rejected",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 200000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 300000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "rejected",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-025",
+      "category": "financial-operations",
+      "input": "Expired duplicate correction. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [
+            "tx-2"
+          ],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "expired",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "expired",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-026",
+      "category": "financial-operations",
+      "input": "Separate account approved correction. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": -20,
+          "executed": true,
+          "abstained": false,
+          "duplicate_suppressed": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status",
+          "execute_correction"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-3"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-3",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-3",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-3",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 99980,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-027",
+      "category": "financial-operations",
+      "input": "Negative balance difference with approved reversal. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": -10000,
+          "executed": true,
+          "abstained": false,
+          "duplicate_suppressed": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status",
+          "execute_correction"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 90000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-028",
+      "category": "financial-operations",
+      "input": "Repeated duplicate refund correction. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [
+            "tx-2"
+          ],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": true,
+          "abstained": false,
+          "duplicate_suppressed": true
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report",
+          "create_approval_request",
+          "get_approval_status",
+          "execute_correction"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": -500,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": -500,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": true,
+        "approval_decision": "approved",
+        "repeat_action": true,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "critical",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-029",
+      "category": "financial-operations",
+      "input": "Large integer reconciliation delta. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 100000000000,
+          "executed": false,
+          "abstained": false
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-1"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "completed",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-1",
+        "transactions": [
+          {
+            "id": "tx-1",
+            "account_id": "ACC-1",
+            "amount_minor": 1000,
+            "currency": "USD",
+            "reference": "invoice-1"
+          },
+          {
+            "id": "tx-2",
+            "account_id": "ACC-1",
+            "amount_minor": 500,
+            "currency": "USD",
+            "reference": "invoice-2"
+          },
+          {
+            "id": "tx-other",
+            "account_id": "OTHER",
+            "amount_minor": 99999999,
+            "currency": "USD",
+            "reference": "outside-scope"
+          }
+        ],
+        "bank_balance_minor": 100000100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "ops-030",
+      "category": "financial-operations",
+      "input": "Missing evidence in another account. Review only the scoped synthetic account.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "duplicate_ids": [],
+          "risk": "low",
+          "difference_minor": 0,
+          "executed": false,
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "list_transactions",
+          "find_duplicate_transactions",
+          "detect_transaction_anomalies",
+          "find_reconciliation_discrepancies",
+          "generate_reconciliation_report"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {
+          "list_transactions": {
+            "account_id": "ACC-9"
+          }
+        },
+        "order": [
+          [
+            "list_transactions",
+            "find_duplicate_transactions"
+          ],
+          [
+            "list_transactions",
+            "find_reconciliation_discrepancies"
+          ]
+        ],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "retrieve",
+          "analyze",
+          "reconcile"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "account_id": "ACC-9",
+        "transactions": [],
+        "bank_balance_minor": 100000,
+        "ledger_balance_minor": 100000,
+        "requires_approval": false,
+        "approval_decision": "approved",
+        "repeat_action": false,
+        "documents": []
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    }
+  ]
+}

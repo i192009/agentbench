@@ -1,0 +1,23 @@
+# Optional source mounts for iterative development; default Compose builds self-contained images.
+services:
+  backend: &source
+    volumes:
+      - ./backend:/app/backend
+      - ./scripts:/app/scripts
+      - ./examples:/app/examples
+      - ./datasets:/app/datasets
+      - ./artifacts:/app/artifacts
+  worker:
+    <<: *source
+  migrate:
+    <<: *source
+  scheduler:
+    <<: *source
+  mcp-financial:
+    <<: *source
+  mcp-transactions:
+    <<: *source
+  mcp-risk:
+    <<: *source
+  mcp-approvals:
+    <<: *source

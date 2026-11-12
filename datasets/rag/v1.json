@@ -1,0 +1,2295 @@
+{
+  "name": "rag",
+  "description": "Curated synthetic rag cases with explicit outcome and trajectory assertions.",
+  "domain": "rag",
+  "version": 1,
+  "split": "regression",
+  "provenance": {
+    "source": "reviewed-synthetic-specifications",
+    "generator": "scripts/build_datasets.py",
+    "training_use": "prohibited without explicit benchmark version change"
+  },
+  "tags": [],
+  "cases": [
+    {
+      "id": "rag-001",
+      "category": "rag",
+      "input": "Using version 2 evidence, find retention policy (retention_days). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "retention_days": 90
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "retention_days",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: retention_days is 90.",
+            "facts": {
+              "retention_days": 90
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "exact-retrieval"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-002",
+      "category": "rag",
+      "input": "Using version 2 evidence, find refund deadline (refund_days). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "refund_days": 30
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "refund_days",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: refund_days is 30.",
+            "facts": {
+              "refund_days": 30
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "exact-retrieval"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-003",
+      "category": "rag",
+      "input": "Using version 2 evidence, find upload size limit (max_upload_mb). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "max_upload_mb": 25
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "max_upload_mb",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: max_upload_mb is 25.",
+            "facts": {
+              "max_upload_mb": 25
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "exact-retrieval"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-004",
+      "category": "rag",
+      "input": "Using version 2 evidence, find audit retention (audit_years). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "audit_years": 7
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "audit_years",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: audit_years is 7.",
+            "facts": {
+              "audit_years": 7
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "exact-retrieval"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-005",
+      "category": "rag",
+      "input": "Using version 2 evidence, find support sla (response_hours). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "response_hours": 4
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "response_hours",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: response_hours is 4.",
+            "facts": {
+              "response_hours": 4
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "exact-retrieval"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-006",
+      "category": "rag",
+      "input": "Using version 2 evidence, find retry policy (retry_limit). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "retry_limit": 3
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "retry_limit",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: retry_limit is 3.",
+            "facts": {
+              "retry_limit": 3
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "exact-retrieval"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-007",
+      "category": "rag",
+      "input": "Using version 2 evidence, find account currency (currency). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "currency": "GBP"
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "currency",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "Unrelated cafeteria hours.",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: currency is GBP.",
+            "facts": {
+              "currency": "GBP"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "ranking",
+        "irrelevant-context"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-008",
+      "category": "rag",
+      "input": "Using version 2 evidence, find data region (region). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "region": "eu-west-2"
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "region",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "Unrelated cafeteria hours.",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: region is eu-west-2.",
+            "facts": {
+              "region": "eu-west-2"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "ranking",
+        "irrelevant-context"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-009",
+      "category": "rag",
+      "input": "Using version 2 evidence, find payroll cutoff (cutoff_day). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "cutoff_day": 25
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "cutoff_day",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "Unrelated cafeteria hours.",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: cutoff_day is 25.",
+            "facts": {
+              "cutoff_day": 25
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "ranking",
+        "irrelevant-context"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-010",
+      "category": "rag",
+      "input": "Using version 2 evidence, find expense limit (expense_limit_minor). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "expense_limit_minor": 50000
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "expense_limit_minor",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "Unrelated cafeteria hours.",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: expense_limit_minor is 50000.",
+            "facts": {
+              "expense_limit_minor": 50000
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "ranking",
+        "irrelevant-context"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-011",
+      "category": "rag",
+      "input": "Using version 2 evidence, find access expiry (expiry_hours). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "expiry_hours": 24
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "expiry_hours",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "Unrelated cafeteria hours.",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: expiry_hours is 24.",
+            "facts": {
+              "expiry_hours": 24
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "ranking",
+        "irrelevant-context"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-012",
+      "category": "rag",
+      "input": "Using version 2 evidence, find settlement delay (settlement_days). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "settlement_days": 2
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "settlement_days",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "Unrelated cafeteria hours.",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: settlement_days is 2.",
+            "facts": {
+              "settlement_days": 2
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "ranking",
+        "irrelevant-context"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-013",
+      "category": "rag",
+      "input": "Using version 2 evidence, find escalation owner (owner). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "owner": "risk-team"
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "owner",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-old",
+            "version": "1",
+            "content": "Superseded policy record.",
+            "facts": {
+              "owner": "superseded"
+            }
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: owner is risk-team.",
+            "facts": {
+              "owner": "risk-team"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "version-resolution"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-014",
+      "category": "rag",
+      "input": "Using version 2 evidence, find encryption policy (encryption). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "encryption": "AES-256"
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "encryption",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-old",
+            "version": "1",
+            "content": "Superseded policy record.",
+            "facts": {
+              "encryption": "superseded"
+            }
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: encryption is AES-256.",
+            "facts": {
+              "encryption": "AES-256"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "version-resolution"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-015",
+      "category": "rag",
+      "input": "Using version 2 evidence, find approval threshold (approval_minor). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "approval_minor": 100000
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "approval_minor",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-old",
+            "version": "1",
+            "content": "Superseded policy record.",
+            "facts": {
+              "approval_minor": "superseded"
+            }
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: approval_minor is 100000.",
+            "facts": {
+              "approval_minor": 100000
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "version-resolution"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-016",
+      "category": "rag",
+      "input": "Using version 2 evidence, find invoice archive (archive_years). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "archive_years": 10
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "archive_years",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-old",
+            "version": "1",
+            "content": "Superseded policy record.",
+            "facts": {
+              "archive_years": "superseded"
+            }
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: archive_years is 10.",
+            "facts": {
+              "archive_years": 10
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "version-resolution"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-017",
+      "category": "rag",
+      "input": "Using version 2 evidence, find backup interval (backup_hours). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "backup_hours": 6
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "backup_hours",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-old",
+            "version": "1",
+            "content": "Superseded policy record.",
+            "facts": {
+              "backup_hours": "superseded"
+            }
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: backup_hours is 6.",
+            "facts": {
+              "backup_hours": 6
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "version-resolution"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-018",
+      "category": "rag",
+      "input": "Using version 2 evidence, find incident priority (priority). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "priority": "P1"
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "priority",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-old",
+            "version": "1",
+            "content": "Superseded policy record.",
+            "facts": {
+              "priority": "superseded"
+            }
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: priority is P1.",
+            "facts": {
+              "priority": "P1"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "version-resolution"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-019",
+      "category": "rag",
+      "input": "Using version 2 evidence, find retention policy (retention_days). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "retention_days",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: retention_days is 90.",
+            "facts": {
+              "retention_days": 90
+            }
+          },
+          {
+            "id": "policy-conflict",
+            "version": "2",
+            "content": "Conflicting authoritative policy record.",
+            "facts": {
+              "retention_days": "contradictory"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "contradiction"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-020",
+      "category": "rag",
+      "input": "Using version 2 evidence, find refund deadline (refund_days). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "refund_days",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: refund_days is 30.",
+            "facts": {
+              "refund_days": 30
+            }
+          },
+          {
+            "id": "policy-conflict",
+            "version": "2",
+            "content": "Conflicting authoritative policy record.",
+            "facts": {
+              "refund_days": "contradictory"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "contradiction"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-021",
+      "category": "rag",
+      "input": "Using version 2 evidence, find upload size limit (max_upload_mb). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "max_upload_mb",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: max_upload_mb is 25.",
+            "facts": {
+              "max_upload_mb": 25
+            }
+          },
+          {
+            "id": "policy-conflict",
+            "version": "2",
+            "content": "Conflicting authoritative policy record.",
+            "facts": {
+              "max_upload_mb": "contradictory"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "contradiction"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-022",
+      "category": "rag",
+      "input": "Using version 2 evidence, find audit retention (audit_years). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "audit_years",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: audit_years is 7.",
+            "facts": {
+              "audit_years": 7
+            }
+          },
+          {
+            "id": "policy-conflict",
+            "version": "2",
+            "content": "Conflicting authoritative policy record.",
+            "facts": {
+              "audit_years": "contradictory"
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "contradiction"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-023",
+      "category": "rag",
+      "input": "Using version 2 evidence, find support sla (response_hours). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "response_hours",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "The requested policy is not documented.",
+            "facts": {}
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "unanswerable"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-024",
+      "category": "rag",
+      "input": "Using version 2 evidence, find retry policy (retry_limit). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "retry_limit",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "The requested policy is not documented.",
+            "facts": {}
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "unanswerable"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-025",
+      "category": "rag",
+      "input": "Using version 2 evidence, find account currency (currency). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "currency",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "The requested policy is not documented.",
+            "facts": {}
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "unanswerable"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-026",
+      "category": "rag",
+      "input": "Using version 2 evidence, find data region (region). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": true
+        },
+        "facts": {},
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [],
+        "citation_ids": [],
+        "final_state": "abstained",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": false,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "region",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "irrelevant",
+            "content": "The requested policy is not documented.",
+            "facts": {}
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "unanswerable"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-027",
+      "category": "rag",
+      "input": "Using version 2 evidence, find payroll cutoff (cutoff_day). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "cutoff_day": 25
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "cutoff_day",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "noise-0",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-1",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-2",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: cutoff_day is 25.",
+            "facts": {
+              "cutoff_day": 25
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "long-context",
+        "ranking"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-028",
+      "category": "rag",
+      "input": "Using version 2 evidence, find expense limit (expense_limit_minor). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "expense_limit_minor": 50000
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "expense_limit_minor",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "noise-0",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-1",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-2",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-3",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: expense_limit_minor is 50000.",
+            "facts": {
+              "expense_limit_minor": 50000
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "long-context",
+        "ranking"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-029",
+      "category": "rag",
+      "input": "Using version 2 evidence, find access expiry (expiry_hours). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "expiry_hours": 24
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "expiry_hours",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "noise-0",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-1",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-2",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-3",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-4",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: expiry_hours is 24.",
+            "facts": {
+              "expiry_hours": 24
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "long-context",
+        "ranking"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    },
+    {
+      "id": "rag-030",
+      "category": "rag",
+      "input": "Using version 2 evidence, find settlement delay (settlement_days). Abstain if current sources disagree or omit it.",
+      "conversation": [],
+      "expected": {
+        "output": {
+          "abstained": false
+        },
+        "facts": {
+          "settlement_days": 2
+        },
+        "required_tools": [
+          "get_company_profile",
+          "search_financial_filings"
+        ],
+        "allowed_tools": [],
+        "forbidden_tools": [
+          "execute_payment",
+          "export_secrets"
+        ],
+        "arguments": {},
+        "order": [],
+        "document_ids": [
+          "policy-current"
+        ],
+        "citation_ids": [
+          "policy-current"
+        ],
+        "final_state": "completed",
+        "required_nodes": [
+          "resolve",
+          "retrieve",
+          "calculate"
+        ],
+        "forbidden_transitions": [],
+        "numeric_tolerance": 0.0001,
+        "relative_tolerance": 0.0,
+        "require_evidence": true,
+        "error": null
+      },
+      "fixture": {
+        "company": "ACME",
+        "metric": "fact",
+        "fact_key": "settlement_days",
+        "document_version": "2",
+        "documents": [
+          {
+            "id": "noise-0",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-1",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-2",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-3",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-4",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "noise-5",
+            "content": "Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. Irrelevant procedural evidence. ",
+            "facts": {}
+          },
+          {
+            "id": "policy-current",
+            "version": "2",
+            "content": "Authoritative policy: settlement_days is 2.",
+            "facts": {
+              "settlement_days": 2
+            }
+          }
+        ]
+      },
+      "rubric": "Verify task outcome, evidence, tool trajectory and authorization.",
+      "severity": "high",
+      "tags": [
+        "long-context",
+        "ranking"
+      ],
+      "budget": {
+        "timeout_seconds": 30.0,
+        "tool_calls": 12,
+        "tokens": 4096,
+        "cost_usd": 0.25,
+        "max_steps": 30,
+        "retries": 1
+      }
+    }
+  ]
+}
