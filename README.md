@@ -14,7 +14,9 @@ certification. Offline evaluations test deterministic synthetic workflows. They 
 measure live model reasoning. Live model planning and structured judging require explicit
 configuration; paid provider calls and live original-project deployments remain unverified.
 
-![Running AgentBench dashboard](docs/screenshots/overview.png)
+![Running AgentBench dashboard](screenshots/overview.png)
+
+[View all result screenshots](screenshots/README.md).
 
 ## Why it exists
 
